@@ -1,0 +1,12 @@
+<section class="page-panel">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0"><%= @collaborator.name %></h1>
+    <%= link_to "Editar", edit_collaborator_path(@collaborator), class: "btn btn-primary" %>
+  </div>
+  <dl class="row">
+    <% [["Email", @collaborator.email], ["RFC", @collaborator.rfc], ["Domicilio fiscal", @collaborator.fiscal_address], ["CURP", @collaborator.curp], ["NSS", @collaborator.nss], ["Inicio laboral", @collaborator.start_date], ["Contrato", @collaborator.contract_type], ["Departamento", @collaborator.department], ["Puesto", @collaborator.position], ["Salario diario", number_to_currency(@collaborator.daily_salary)], ["Salario", number_to_currency(@collaborator.salary)], ["Clave entidad", @collaborator.entity_key], ["Estado", @collaborator.state]].each do |label, value| %>
+      <dt class="col-sm-3"><%= label %></dt><dd class="col-sm-9"><%= value %></dd>
+    <% end %>
+  </dl>
+  <%= link_to "Volver", collaborators_path, class: "btn btn-link" %>
+</section>

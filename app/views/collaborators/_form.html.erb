@@ -1,0 +1,24 @@
+<%= form_with model: collaborator, data: { controller: "form-validation", action: "submit->form-validation#validate" } do |form| %>
+  <%= render "registrations/shared_errors", object: collaborator %>
+  <div class="row">
+    <% [
+      [:name, "Nombre", :text_field], [:email, "Correo", :email_field], [:rfc, "RFC", :text_field],
+      [:fiscal_address, "Domicilio fiscal", :text_field], [:curp, "CURP", :text_field], [:nss, "Numero de seguridad social", :text_field],
+      [:start_date, "Fecha inicio laboral", :date_field], [:contract_type, "Tipo de contrato", :text_field],
+      [:department, "Departamento", :text_field], [:position, "Puesto", :text_field],
+      [:daily_salary, "Salario diario", :number_field], [:salary, "Salario", :number_field],
+      [:entity_key, "Clave entidad", :text_field]
+    ].each do |attr, label, helper| %>
+      <div class="col-md-6 mb-3">
+        <%= form.label attr, label, class: "form-label" %>
+        <%= form.public_send(helper, attr, class: "form-control", step: "0.01", data: { form_validation_target: "required" }) %>
+      </div>
+    <% end %>
+    <div class="col-md-6 mb-3">
+      <%= form.label :state, "Estado", class: "form-label" %>
+      <%= form.select :state, Collaborator::MEXICAN_STATES, { prompt: "Selecciona un estado" }, class: "form-select", data: { form_validation_target: "required" } %>
+    </div>
+  </div>
+  <%= form.submit "Guardar", class: "btn btn-primary" %>
+  <%= link_to "Cancelar", collaborators_path, class: "btn btn-link" %>
+<% end %>

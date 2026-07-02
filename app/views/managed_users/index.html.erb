@@ -1,0 +1,33 @@
+<section class="page-panel">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Usuarios asociados</h1>
+    <%= link_to "Nuevo", new_managed_user_path, class: "btn btn-primary" %>
+  </div>
+  <% if @managed_users.empty? %>
+    <div class="text-center py-5">
+      <p class="text-secondary">No hay usuarios asociados registrados.</p>
+      <%= link_to "Agregar usuario", new_managed_user_path, class: "btn btn-primary" %>
+    </div>
+  <% else %>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead><tr><th>Nombre</th><th>RFC</th><th>Telefono</th><th>Website</th><th></th></tr></thead>
+        <tbody>
+          <% @managed_users.each do |managed_user| %>
+            <tr>
+              <td><%= managed_user.name %></td>
+              <td><%= managed_user.rfc %></td>
+              <td><%= managed_user.phone %></td>
+              <td><%= managed_user.website %></td>
+              <td class="text-end">
+                <%= link_to "Ver", managed_user, class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "Editar", edit_managed_user_path(managed_user), class: "btn btn-sm btn-outline-primary" %>
+                <%= button_to "Eliminar", managed_user, method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Eliminar usuario asociado?" } } %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</section>

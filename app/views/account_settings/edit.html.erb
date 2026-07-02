@@ -1,0 +1,34 @@
+<section class="page-panel">
+  <h1 class="h3 mb-3">Editar cuenta</h1>
+  <%= form_with model: current_user, url: account_settings_path, method: :patch, data: { controller: "form-validation", action: "submit->form-validation#validate" } do |form| %>
+    <%= render "registrations/shared_errors", object: current_user %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= form.label :name, "Nombre", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", data: { form_validation_target: "required" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :email, "Correo electronico", class: "form-label" %>
+        <%= form.email_field :email, class: "form-control", data: { form_validation_target: "required" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :rfc, "RFC", class: "form-label" %>
+        <%= form.text_field :rfc, class: "form-control text-uppercase", data: { form_validation_target: "required" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :current_password, "Password actual", class: "form-label" %>
+        <%= form.password_field :current_password, class: "form-control" %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :password, "Nuevo password", class: "form-label" %>
+        <%= form.password_field :password, class: "form-control", data: { form_validation_target: "password" } %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= form.label :password_confirmation, "Confirmacion", class: "form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control", data: { form_validation_target: "passwordConfirmation" } %>
+      </div>
+    </div>
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", account_settings_path, class: "btn btn-link" %>
+  <% end %>
+</section>

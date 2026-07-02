@@ -1,0 +1,18 @@
+<section class="page-panel">
+  <h1 class="h3">Dashboard</h1>
+  <p class="text-secondary">Panel principal del examen tecnico Rails.</p>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="border rounded p-3 bg-light">
+        <div class="small text-secondary">Colaboradores</div>
+        <div class="display-6"><%= @collaborators_count %></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="border rounded p-3 bg-light">
+        <div class="small text-secondary">Usuarios asociados</div>
+        <div class="display-6"><%= @managed_users_count %></div>
+      </div>
+    </div>
+  </div>
+</section>

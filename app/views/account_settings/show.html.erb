@@ -1,0 +1,12 @@
+<section class="page-panel">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h3 mb-0">Configuracion de Cuenta</h1>
+    <%= link_to "Editar", edit_account_settings_path, class: "btn btn-primary" %>
+  </div>
+  <dl class="row">
+    <dt class="col-sm-3">Nombre</dt><dd class="col-sm-9"><%= current_user.name %></dd>
+    <dt class="col-sm-3">Correo</dt><dd class="col-sm-9"><%= current_user.email %></dd>
+    <dt class="col-sm-3">RFC</dt><dd class="col-sm-9"><%= current_user.rfc %></dd>
+    <dt class="col-sm-3">Administrador</dt><dd class="col-sm-9"><%= current_user.admin? ? "Si" : "No" %></dd>
+  </dl>
+</section>

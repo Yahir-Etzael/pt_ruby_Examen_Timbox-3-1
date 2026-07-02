@@ -1,0 +1,13 @@
+<%= form_with model: managed_user, data: { controller: "form-validation", action: "submit->form-validation#validate" } do |form| %>
+  <%= render "registrations/shared_errors", object: managed_user %>
+  <div class="row">
+    <% [[:name, "Nombre"], [:rfc, "RFC"], [:address, "Direccion"], [:phone, "Telefono"], [:website, "Website"]].each do |attr, label| %>
+      <div class="col-md-6 mb-3">
+        <%= form.label attr, label, class: "form-label" %>
+        <%= form.text_field attr, class: "form-control", data: { form_validation_target: "required" } %>
+      </div>
+    <% end %>
+  </div>
+  <%= form.submit "Guardar", class: "btn btn-primary" %>
+  <%= link_to "Cancelar", managed_users_path, class: "btn btn-link" %>
+<% end %>

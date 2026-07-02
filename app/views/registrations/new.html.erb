@@ -1,0 +1,28 @@
+<section class="page-panel">
+  <h1 class="h4 mb-3">Registro</h1>
+  <%= form_with model: @user, url: register_path, data: { controller: "form-validation", action: "submit->form-validation#validate" } do |form| %>
+    <%= render "registrations/shared_errors", object: @user %>
+    <div class="mb-3">
+      <%= form.label :name, "Nombre", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", data: { form_validation_target: "required" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :email, "Correo electronico", class: "form-label" %>
+      <%= form.email_field :email, class: "form-control", data: { form_validation_target: "required" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :rfc, "RFC", class: "form-label" %>
+      <%= form.text_field :rfc, class: "form-control text-uppercase", data: { form_validation_target: "required" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :password, "Password", class: "form-label" %>
+      <%= form.password_field :password, class: "form-control", data: { form_validation_target: "required password" } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :password_confirmation, "Confirmacion", class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control", data: { form_validation_target: "required passwordConfirmation" } %>
+    </div>
+    <%= form.submit "Crear cuenta", class: "btn btn-primary" %>
+    <%= link_to "Ya tengo cuenta", login_path, class: "btn btn-link" %>
+  <% end %>
+</section>

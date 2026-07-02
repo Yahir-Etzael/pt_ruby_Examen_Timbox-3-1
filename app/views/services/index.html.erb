@@ -1,0 +1,43 @@
+<section class="page-panel">
+  <h1 class="h3 mb-3">Servicios JSONPlaceholder</h1>
+
+  <%= form_with url: services_path, class: "row g-2 mb-4", data: { controller: "form-validation", action: "submit->form-validation#validate" } do |form| %>
+    <div class="col-md-4">
+      <%= form.text_field :title, class: "form-control", placeholder: "Titulo", data: { form_validation_target: "required" } %>
+    </div>
+    <div class="col-md-6">
+      <%= form.text_field :body, class: "form-control", placeholder: "Contenido", data: { form_validation_target: "required" } %>
+    </div>
+    <div class="col-md-2 d-grid">
+      <%= form.submit "Crear", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead><tr><th>ID</th><th>Titulo</th><th>Contenido</th><th></th></tr></thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post["id"] %></td>
+            <td><%= post["title"] %></td>
+            <td><%= truncate(post["body"], length: 90) %></td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#edit-post-<%= post["id"] %>">Editar</button>
+              <%= button_to "Eliminar", service_path(post["id"]), method: :delete, class: "btn btn-sm btn-outline-danger", form: { data: { turbo_confirm: "Eliminar publicacion simulada?" } } %>
+            </td>
+          </tr>
+          <tr class="collapse" id="edit-post-<%= post["id"] %>">
+            <td colspan="4">
+              <%= form_with url: service_path(post["id"]), method: :patch, class: "row g-2" do |form| %>
+                <div class="col-md-4"><%= form.text_field :title, value: post["title"], class: "form-control" %></div>
+                <div class="col-md-6"><%= form.text_field :body, value: post["body"], class: "form-control" %></div>
+                <div class="col-md-2 d-grid"><%= form.submit "Guardar", class: "btn btn-primary" %></div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
