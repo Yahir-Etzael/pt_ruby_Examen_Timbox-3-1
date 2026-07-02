@@ -148,3 +148,16 @@ docker compose up --build
 - PostgreSQL con Docker desde Windows: `localhost:5433`
 - PostgreSQL dentro de Docker: `db:5432`
 
+## Servicios JSONPlaceholder
+
+En la opcion `Servicios` del menu, la app se conecta a JSONPlaceholder, que es una API publica de prueba.
+
+Desde esa pantalla puedes listar, crear, editar y eliminar publicaciones simuladas. Es importante saber que JSONPlaceholder responde como si guardara los cambios, pero no los guarda realmente en su servidor.
+
+En este proyecto los cambios se reflejan durante tu sesion para que puedas probar el flujo completo:
+
+- Crear agrega la publicacion al inicio del listado.
+- Editar actualiza la publicacion en pantalla.
+- Eliminar la quita del listado.
+
+Si reinicias la sesion o vuelves a cargar los datos desde cero, JSONPlaceholder regresara a su informacion original.
